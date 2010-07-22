@@ -1,0 +1,36 @@
+grammar Ris
+  rule entry
+    (key value seperator)* {
+      def eval
+        elements.map { |e| [e.key.eval, e.value.eval]}
+      end
+    }
+  end
+  rule key 
+   key_name '  - ' {
+      def eval
+        elements[0].eval
+      end
+    }
+  end
+  rule key_name
+    'AR' {
+      def eval
+        text_value
+      end
+    }
+  end
+  rule value
+    [a-z]+ {
+      def eval
+        text_value
+      end
+    }
+  end
+  rule seperator
+    "\n"
+  end
+  rule end_of_record
+    "ER  - \n"
+  end
+end
