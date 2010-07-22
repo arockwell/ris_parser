@@ -1,6 +1,6 @@
 grammar Ris
   rule entry
-    (key value seperator)* {
+    (key value seperator)+ {
       def eval
         elements.map { |e| [e.key.eval, e.value.eval]}
       end
