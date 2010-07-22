@@ -1,4 +1,11 @@
 grammar Ris
+  rule entries
+    (entry)+ {
+      def eval
+        elements.map { |e| e.eval }
+      end
+    }
+  end
   rule entry
     (key_value)+ end_of_record {
       def eval
