@@ -1,5 +1,12 @@
 grammar Ris
   rule entry
+    (key_value)+ end_of_record {
+      def eval
+        elements[0].elements[0].eval
+      end
+    }
+  end
+  rule key_value
     (key value seperator)+ {
       def eval
         elements.map { |e| [e.key.eval, e.value.eval]}
@@ -31,6 +38,10 @@ grammar Ris
     "\n"
   end
   rule end_of_record
-    "ER  - \n"
+    "ER  - \n" {
+      def eval
+        "ER"
+      end
+    }
   end
 end
