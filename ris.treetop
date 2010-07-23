@@ -23,19 +23,22 @@ grammar Ris
   rule key 
    key_name '  - ' {
       def eval
-        elements[0].eval
+        elements[0].text_value
       end
     }
   end
   rule key_name
-    'AR' {
+    'TY' / 'ID' / 'T1' / 'TI' / 'CT' / 'A1' / 'A2' / 'AU' / 'Y1' / 'PY' / 'N1' /
+    'KW' / 'RP' / 'SP' / 'EP' / 'JF' / 'JO' / 'JA' / 'J1' / 'J2' / 'VL' / 'IS' /
+    'T2' / 'CY' / 'PB' / 'U1' / 'U5' / 'T3' / 'N2' / 'SN' / 'AV' / 'M1' / 'M3' /
+    'AD' / 'UR' / 'L1' / 'L2' / 'L3' / 'L4' {
       def eval
         text_value
       end
     }
   end
   rule value
-    [a-z]+ {
+    [^\n]+ {
       def eval
         text_value
       end
@@ -45,7 +48,7 @@ grammar Ris
     "\n"
   end
   rule end_of_record
-    "ER  - \n" {
+    "ER  - \n\n" {
       def eval
         "ER"
       end
