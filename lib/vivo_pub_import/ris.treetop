@@ -9,7 +9,22 @@ grammar Ris
   rule entry
     (key_value)+ end_of_record {
       def eval
-        elements[0].elements[0].eval
+        entry = Hash.new
+        key_values = elements[0].elements[0].eval
+        key_values.each do |key_value|
+          (key, value) = key_value
+          # group multi-valued keys onto an array
+          if key == 'A1' || key == 'A2' || key == 'KW'
+            if entry[key] == nil
+              entry[key] = [value]
+            else
+              entry[key].push(value)
+            end
+          else
+            entry[key] = value
+          end
+        end
+        return entry
       end
     }
   end

@@ -3,10 +3,11 @@
 require 'rubygems'
 require 'treetop'
 require 'polyglot'
-require 'ris'
+
+require 'vivo_pub_import'
 require 'pp'
 
-blarg = <<-EOH
+test_data = <<-EOH
 TY  - CHAP
 ID  - 3092
 A1  - Adelson,R. T.
@@ -37,24 +38,6 @@ ER  -
 EOH
 
 parser = RisParser.new
-
-a = parser.parse(blarg).eval
-records = []
-a.each do |record|
-  entry = {}
-  record.each do |key_value|
-    if key_value[0] == 'A1' || key_value[0] == 'A2' || key_value[0] == 'KW'
-      if entry[key_value[0]] == nil
-        entry[key_value[0]] = [key_value[1]]
-      else
-        entry[key_value[0]].push(key_value[1])
-      end
-    else
-      entry[key_value[0]] = key_value[1]
-    end
-  end
-  records << entry
-end
-
-pp records
+result = parser.parse(test_data).eval
+pp result
 
