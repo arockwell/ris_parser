@@ -1,0 +1,10 @@
+Simple Parser for the RIS File Format
+
+To install:
+
+rake pacakge
+sudo gem install pkg/RisParser-0.1.gem
+
+To see example output:
+
+ruby bin/ris_parser
