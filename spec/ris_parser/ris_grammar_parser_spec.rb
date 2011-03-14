@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-module VivoPubImport
-  describe RefworksImporter do
+module RisParser
+  describe RisGrammarParser do
     it "should parse ris data" do
       data = <<-EOH
 TY  - CHAP
@@ -32,8 +32,11 @@ M1  - Book, Section
 ER  - 
 
       EOH
-      records = RefworksImporter.parse_ris(data)
+      parser = RisGrammarParser.new
+      records = parser.parse(data).eval
       records.size.should == 2
+      records[0]['A1'][0].should == "Author,P. A."
+      records[1]['SP'].should == "163"
     end
   end
 end
