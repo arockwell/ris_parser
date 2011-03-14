@@ -1,8 +1,8 @@
-module VivoPubImport
+module RisParser
 end
 
 require 'rubygems'
 require 'treetop'
 require 'polyglot'
 
-require 'vivo_pub_import/ris'
+require 'ris_parser/ris_grammar'

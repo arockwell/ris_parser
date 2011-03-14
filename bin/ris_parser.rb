@@ -1,10 +1,7 @@
 #!/usr/bin/ruby
 
 require 'rubygems'
-require 'treetop'
-require 'polyglot'
-
-require 'vivo_pub_import'
+require 'ris_parser'
 require 'pp'
 
 test_data = <<-EOH
@@ -37,7 +34,7 @@ ER  -
 
 EOH
 
-parser = RisParser.new
+parser = RisGrammarParser.new
 result = parser.parse(test_data).eval
 pp result
 

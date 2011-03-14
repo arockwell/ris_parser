@@ -1,4 +1,4 @@
-grammar Ris
+grammar RisGrammar
   rule entries
     (entry)+ {
       def eval
